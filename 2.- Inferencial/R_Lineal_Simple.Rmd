@@ -1,19 +1,28 @@
 ---
-title: "Regresi�n Lineal Simple"
+title: "Regresión Lineal Simple"
 author: "Christian Chiroque"
 date: "14 de julio de 2020"
 output: html_document
 ---
+[Data Política](https://www.youtube.com/channel/UCjsP5ejsSyUchRl2oA96J3A)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Introducción
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Te sugiero ver el siguiente **tutorial** y luego aplicar los comandos de esta página:
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-p02G7NXlSk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+```{r cars}
+library(rio)
+lkSAV="https://github.com/DataPolitica/salidas/blob/master/0.-%20Data/trabajadores.sav"
+trabajadores=import(lkSAV)
+```
+
+
 
 ```{r cars}
 summary(cars)
