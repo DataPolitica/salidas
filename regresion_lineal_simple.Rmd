@@ -4,7 +4,7 @@ author: "Christian Chiroque"
 date: "14 de julio de 2020"
 output: html_document
 ---
-[Data Política](https://www.youtube.com/channel/UCjsP5ejsSyUchRl2oA96J3A)
+[Data PolÃ­tica](https://www.youtube.com/channel/UCjsP5ejsSyUchRl2oA96J3A)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

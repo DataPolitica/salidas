@@ -184,7 +184,88 @@ summary {
 </div>
 
 
-<p>[Data Pol</p>
+<p><a href="https://www.youtube.com/channel/UCjsP5ejsSyUchRl2oA96J3A">Data Política</a></p>
+<div id="introducción" class="section level2">
+<h2>Introducción</h2>
+<p>Te sugiero ver el siguiente <strong>tutorial</strong> y luego aplicar los comandos de esta página:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-p02G7NXlSk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="pasos-previos" class="section level3">
+<h3>Pasos previos</h3>
+<p>Solicitamos nuestra base de datos:</p>
+<pre class="r"><code>library(rio)
+baseSOSS=&quot;https://github.com/DataPolitica/salidas/raw/master/Data/trabajadores.sav&quot;
+trabajadores=import(baseSOSS)</code></pre>
+<p>Identificamos las variables que tenemos:</p>
+<pre class="r"><code>names(trabajadores)</code></pre>
+<pre><code>##  [1] &quot;id&quot;              &quot;sexo&quot;            &quot;fechnac&quot;         &quot;educ&quot;           
+##  [5] &quot;catlab&quot;          &quot;salario_actual&quot;  &quot;salario_inicial&quot; &quot;antiguedad&quot;     
+##  [9] &quot;experiencia&quot;     &quot;minoría&quot;         &quot;directivo&quot;</code></pre>
+</div>
+<div id="generamos-nuestro-modelo-de-regresión" class="section level3">
+<h3>Generamos nuestro modelo de regresión</h3>
+<pre class="r"><code>modelo1=lm(salario_actual~salario_inicial,data=trabajadores)
+summary(modelo1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = salario_actual ~ salario_inicial, data = trabajadores)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -35424  -4031  -1154   2584  49293 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     1.928e+03  8.887e+02    2.17   0.0305 *  
+## salario_inicial 1.909e+00  4.741e-02   40.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 8115 on 472 degrees of freedom
+## Multiple R-squared:  0.7746, Adjusted R-squared:  0.7741 
+## F-statistic:  1622 on 1 and 472 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Para realizar el análisis debemos seguir los pasos de nuestro flujograma:</p>
+<table style="width:39%;">
+<colgroup>
+<col width="19%"></col>
+<col width="19%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pasos</th>
+<th>Análisis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nuestro modelo es válido?</td>
+<td>El p valor de nuestra tabla anova es menor que 0.05, por lo que rechazamos la hipótesis nula (H0:El modelo no es válido) y concluimos que el modelo es válido</td>
+</tr>
+<tr class="even">
+<td>Cuánto explica nuestro modelo?</td>
+<td>Según el R2 ajustado podemos afirmar que nuestro modelo explica el 77% de la variabilidad de la variable dependiente.</td>
+</tr>
+<tr class="odd">
+<td>La variable X aporta al modelo?</td>
+<td>Analizamos la tabla de coeficientes. Vemos que en la línea de nuestra variable independiente, el p valor es menor a 0.05 por lo que rechazamos la hipótesis nula (H0: La variable no aporta al modelo) y concluimos que sí aporta al modelo.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="identificamos-los-coeficientes-y-construimos-la-ecuación" class="section level3">
+<h3>Identificamos los coeficientes y construimos la ecuación</h3>
+<pre class="r"><code>modelo1$coefficients</code></pre>
+<pre><code>##     (Intercept) salario_inicial 
+##      1928.20576         1.90945</code></pre>
+<p>Recordemos la forma de la ecuación:</p>
+<p>y = a + bx</p>
+<p>Entonces, de acuerdo al output, vemos que nuestra ecuación sería de la siguiente manera:</p>
+<p>Salario actual = 1928.20576 + (1.90945 * Salario inicial)</p>
+<p>En donde: 1928.20576 es nuestro intercepto y 1.90945 es nuestra pendiente (b) de x.</p>
+<p>Este último se puede interpretar como &quot;el cambio que se presenta en Y por cada unidad que varía X&quot;.</p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+</div>
+</div>
 
 
 
