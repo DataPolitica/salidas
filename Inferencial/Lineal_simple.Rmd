@@ -1,0 +1,71 @@
+---
+title: "Regresión Lineal Simple"
+author: "Christian Chiroque"
+date: "14 de julio de 2020"
+output: html_document
+---
+[Data Política](https://www.youtube.com/channel/UCjsP5ejsSyUchRl2oA96J3A)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción
+
+Te sugiero ver el siguiente **tutorial** y luego aplicar los comandos de esta página:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-p02G7NXlSk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Pasos previos
+
+Solicitamos nuestra base de datos:
+
+```{r}
+library(rio)
+baseSOSS="https://github.com/DataPolitica/salidas/raw/master/Data/trabajadores.sav"
+trabajadores=import(baseSOSS)
+```
+
+Identificamos las variables que tenemos:
+
+```{r}
+names(trabajadores)
+```
+
+### Generamos nuestro modelo de regresión
+
+```{r}
+modelo1=lm(salario_actual~salario_inicial,data=trabajadores)
+summary(modelo1)
+```
+
+Para realizar el análisis debemos seguir los pasos de nuestro flujograma:
+
+Pasos  | Análisis
+------------- | -------------
+Nuestro modelo es válido?  | El p valor de nuestra tabla anova es menor que 0.05, por lo que rechazamos la hipótesis nula (H0:El modelo no es válido) y concluimos que el modelo es válido
+Cuánto explica nuestro modelo?  | Según el R2 ajustado podemos afirmar que nuestro modelo explica el 77% de la variabilidad de la variable dependiente.
+La variable X aporta al modelo?  | Analizamos la tabla de coeficientes. Vemos que en la línea de nuestra variable independiente, el p valor es menor a 0.05 por lo que rechazamos la hipótesis nula (H0: La variable no aporta al modelo) y concluimos que sí aporta al modelo. 
+
+
+### Identificamos los coeficientes y construimos la ecuación
+
+```{r}
+modelo1$coefficients
+```
+
+
+Recordemos la forma de la ecuación:
+
+y = a + bx
+
+Entonces, de acuerdo al output, vemos que nuestra ecuación sería de la siguiente manera:
+
+Salario actual = 1928.20576 + (1.90945 * Salario inicial)
+
+En donde: 1928.20576 es nuestro intercepto y 1.90945 es nuestra pendiente (b) de x. 
+
+Este último se puede interpretar como "el cambio que se presenta en Y por cada unidad que varía X". 
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
