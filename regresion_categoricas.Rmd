@@ -1,0 +1,39 @@
+---
+title: "Regresión con categóricas"
+author: "Christian Chiroque"
+date: "15 de julio de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Consideraciones previas
+
+Si me preguntan por una variable categórica en general, sin especificar una categoría de esta, utilizamos el subcomando factor() dentro de nuestro fraseo del modelo. Este subcomando lo que hace es crear variables dummy específicamente para utilizarlo en nuestra función lm. 
+Por ejemplo, si agregamos la variable a nuestro modelo 1 compuesto por salario actual (y) y salario inicial (X), el comando sería:
+modelo1=lm (salario_actual ~ salario_inicial + factor(catlab), data=trabajadores) 
+Luego de solicitar el summary de este modelo vamos a notar algo: el programa nos va a agregar al modelo sólo dos variables dummy y no tres.
+Cuando utilizamos este comando, el programa va a agregar por default a la ecuación todas las categorías de la categórica a excepción de una. ¿Cuál? La que tiene el código más bajo. 
+Acordémonos que nuestra variable catlab tiene tres valores: 1. Administrativo / 2. Seguridad / 3. Directivo.
+Si nosotros vemos el resumen vamos a ver lo siguiente:
+
+
+
+
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
