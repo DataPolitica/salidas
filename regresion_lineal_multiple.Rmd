@@ -69,3 +69,9 @@ Este último se puede interpretar como "el cambio que se presenta en Y por cada 
 
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+```{r}
+boxplot(trabajadores$salario_actual)
+```
